@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Magic Bakery</title>
+    <!-- Playful font -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Top UI (Gems) -->
+        <div id="top-bar" class="hidden">
+            <div class="gem-counter">
+                <span class="gem-icon">💎</span>
+                <span id="gem-count">0</span>
+            </div>
+            <button id="btn-back" class="btn-small">⬅ Back</button>
+        </div>
+
+        <!-- Screens -->
+        
+        <!-- Screen 1: Main Menu -->
+        <section id="screen-main-menu" class="screen active">
+            <h1 class="bounce-title">✨ Magic Bakery ✨</h1>
+            <div class="menu-buttons">
+                <button id="btn-play-quest" class="btn-primary">🚪 Open Bakery</button>
+                <button id="btn-play-free" class="btn-secondary">🧁 Free Play</button>
+                <button id="btn-shop" class="btn-tertiary">🏪 Shop</button>
+            </div>
+            <div class="menu-decor">
+                <div class="character-sprite dragon-sprite"></div>
+                <div class="character-sprite fairy-sprite"></div>
+            </div>
+        </section>
+
+        <!-- Screen 2: Bakery (Quest Mode) -->
+        <section id="screen-bakery" class="screen hidden">
+            <div id="customer-area">
+                <!-- Customer will appear here -->
+                <div id="customer-sprite" class="hidden"></div>
+                <div id="order-bubble" class="hidden">
+                    <div id="order-item"></div>
+                </div>
+            </div>
+
+            <!-- Cooking stations -->
+            <div id="kitchen-area">
+                <!-- Mixing Station -->
+                <div id="station-mixing" class="station hidden">
+                    <h2>Mix the Batter!</h2>
+                    <p>Tap the bowl in rhythm!</p>
+                    <div class="bowl-container">
+                        <div id="mixing-bowl"></div>
+                        <div id="spoon" class="tool-cursor hidden"></div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div id="mixing-progress" class="progress-bar"></div>
+                    </div>
+                </div>
+
+                <!-- Pouring Station -->
+                <div id="station-pouring" class="station hidden">
+                    <h2>Pour into the Pan!</h2>
+                    <p>Tilt or drag to pour carefully</p>
+                    <div class="pour-container">
+                        <div id="batter-pitcher"></div>
+                        <div id="baking-pan">
+                            <!-- Spots for batter -->
+                            <div class="pan-spot" data-filled="false"></div>
+                            <div class="pan-spot" data-filled="false"></div>
+                            <div class="pan-spot" data-filled="false"></div>
+                            <div class="pan-spot" data-filled="false"></div>
+                        </div>
+                    </div>
+                    <div id="oven"></div> <!-- Appears after pouring -->
+                </div>
+
+                <!-- Decorating Station -->
+                <div id="station-decorating" class="station hidden">
+                    <h2>Decorate!</h2>
+                    <p>Drag toppings onto the treats</p>
+                    <div class="decor-container">
+                        <div id="baked-treats">
+                            <!-- Output from oven -->
+                        </div>
+                        <div id="toppings-tray">
+                            <div class="topping draggable" draggable="true" data-type="sparkles">✨</div>
+                            <div class="topping draggable" draggable="true" data-type="fire">🔥</div>
+                            <div class="topping draggable" draggable="true" data-type="rainbow">🌈</div>
+                            <div class="topping draggable" draggable="true" data-type="snowflake">❄️</div>
+                        </div>
+                    </div>
+                    <button id="btn-serve" class="btn-primary hidden">Serve!</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 3: Free Play -->
+        <section id="screen-free-play" class="screen hidden">
+            <h1>Free Play Kitchen</h1>
+            <p>Bake anything you want! No timers, no rules.</p>
+            <div id="free-play-area">
+                <!-- Similar stations but freely accessible -->
+                <div class="coming-soon">Full kitchen coming soon! Keep playing to unlock more ingredients.</div>
+            </div>
+        </section>
+
+        <!-- Screen 4: Shop -->
+        <section id="screen-shop" class="screen hidden">
+            <h1>Bakery Shop</h1>
+            <div class="shop-items">
+                <div class="shop-item" data-id="theme_dark">
+                    <h3>Night Bakery Theme</h3>
+                    <p>50 💎</p>
+                    <button class="btn-buy">Buy</button>
+                </div>
+                <div class="shop-item" data-id="tool_golden">
+                    <h3>Golden Whisk</h3>
+                    <p>100 💎</p>
+                    <button class="btn-buy">Buy</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feedback Overlay (Great job! etc) -->
+        <div id="feedback-overlay" class="hidden">
+            <h2 id="feedback-text">Awesome!</h2>
+            <div class="particles"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
