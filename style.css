@@ -1,0 +1,343 @@
+/* Magic Bakery Global Styles */
+:root {
+    --bg-main: #ffe4e1;
+    --text-main: #4a4a4a;
+    --primary-color: #ffb6c1;
+    --secondary-color: #87cefa;
+    --accent-color: #ff69b4;
+    --gem-color: #00ffff;
+    --btn-shadow: 0 4px 0 #cc929a;
+}
+
+[data-theme="dark"] {
+    --bg-main: #2b2b36;
+    --text-main: #f0f0f0;
+    --primary-color: #ba55d3;
+    --secondary-color: #483d8b;
+    --accent-color: #ff00ff;
+    --btn-shadow: 0 4px 0 #800080;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Fredoka', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none; /* Prevent text selection */
+}
+
+#game-container {
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    max-height: 600px;
+    position: relative;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.5) 0%, transparent 70%);
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes mix-wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(10deg); }
+    75% { transform: rotate(-10deg); }
+}
+
+.bounce-title {
+    animation: bounce 2s infinite ease-in-out;
+    font-size: 3rem;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    margin-bottom: 2rem;
+}
+
+/* Screens */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 0.5s ease;
+}
+
+/* Make Top Bar */
+#top-bar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.gem-counter {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Buttons */
+button {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.1s, box-shadow 0.1s, filter 0.2s;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    filter: brightness(1.1);
+}
+
+button:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 transparent;
+}
+
+.btn-primary {
+    background: linear-gradient(180deg, var(--primary-color) 0%, #ff69b4 100%);
+    color: white;
+    box-shadow: var(--btn-shadow);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+    background: linear-gradient(180deg, var(--secondary-color) 0%, #4682b4 100%);
+    color: white;
+    box-shadow: 0 4px 0 #315c80;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.btn-tertiary {
+    background: linear-gradient(180deg, #ffd700 0%, #ffa500 100%);
+    color: white;
+    box-shadow: 0 4px 0 #cc8400;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.btn-small {
+    font-size: 1rem;
+    padding: 8px 20px;
+    background: linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+    color: #333;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 0 #aaa;
+}
+
+/* Mixing Station */
+.bowl-container {
+    width: 200px;
+    height: 200px;
+    background: #e6e6fa;
+    border-radius: 50% 50% 10% 10%;
+    margin: 20px auto;
+    position: relative;
+    border: 5px solid #d8bfd8;
+    overflow: hidden;
+    cursor: pointer; /* Added cursor pointer */
+}
+
+#mixing-bowl {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10%; /* Starts low, gets higher as mixed */
+    background: #ffe4b5;
+    transition: height 0.2s ease-out;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+    width: 80%;
+    height: 20px;
+    background: #ccc;
+    border-radius: 10px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #32cd32;
+    transition: width 0.2s;
+}
+
+/* Pouring Station */
+.pour-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+#batter-pitcher {
+    width: 80px;
+    height: 120px;
+    background: #87cefa;
+    border-radius: 10px 10px 40px 40px;
+    position: relative;
+    cursor: grab;
+    transition: transform 0.2s, top 0.1s, left 0.1s; /* Added transitions */
+}
+
+#batter-pitcher.pouring {
+    transform: rotate(-45deg);
+}
+
+#baking-pan {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    background: #8b4513;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.pan-spot {
+    width: 60px;
+    height: 60px;
+    background: #a0522d;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.pan-spot.filled {
+    background: #ffe4b5;
+}
+
+/* Decorating Station */
+.decor-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#baked-treats {
+    display: flex;
+    gap: 15px;
+}
+
+.treat {
+    width: 80px;
+    height: 80px;
+    background: #f4a460;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+#toppings-tray {
+    display: flex;
+    gap: 10px;
+    background: rgba(255,255,255,0.5);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.topping {
+    font-size: 2rem;
+    cursor: grab;
+    user-select: none;
+}
+
+/* Customers */
+#customer-area {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    display: flex;
+    align-items: flex-end;
+}
+
+#customer-sprite {
+    font-size: 5rem;
+    animation: bounce 2s infinite;
+}
+
+/* Feedback Overlay */
+#feedback-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+#feedback-text {
+    font-size: 4rem;
+    color: #ff69b4;
+    text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
+    animation: pulse 1s infinite;
+}
+
+/* Shop */
+.shop-items {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.shop-item {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 150px;
+}
